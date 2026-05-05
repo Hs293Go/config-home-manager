@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": [".clangd", ".clang-format"],
+      "options": {
+        "parser": "yaml"
+      }
+    }
+  ],
+  "proseWrap": "always"
+}

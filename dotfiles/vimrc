@@ -1,0 +1,97 @@
+let &t_TI = ""
+let &t_TE = ""
+
+""" Plugin Handling
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+
+if empty(glob(data_dir . '/autoload/plug.vim'))
+
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+
+endif
+
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'sickill/vim-monokai'
+Plug 'itchyny/lightline.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'andymass/vim-matchup'
+call plug#end()
+
+runtime macros/matchit.vim
+let g:matchup_matchparen_offscreen = {}
+
+colorscheme monokai
+
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ }
+
+
+""" General Settings that can be copied EVERYWHERE
+
+syntax on
+set encoding=utf-8
+set number
+set noswapfile
+set hlsearch
+set ignorecase
+set incsearch
+set noeb vb t_vb=
+set ts=4 sw=4 sts=4 expandtab
+set backspace=indent,eol,start
+set signcolumn=yes
+set laststatus=2
+set foldmethod=syntax
+set foldlevel=99  " Don't fold by default
+
+au FileType cpp,c setlocal ts=2 sw=2 sts=2 expandtab
+au FileType python setlocal foldmethod=indent makeprg=python\ %
+
+let mapleader=" "
+let maplocalleader = " "
+
+filetype plugin indent on
+"
+" remap colon to semicolon in normal and visual mode, but not in insert mode
+nnoremap ; :
+vnoremap ; :
+nnoremap :: ;
+vnoremap :: ;
+nnoremap ! :!
+
+"show spaces
+nmap <silent> <leader>S :set nolist!<CR>
+"show line numbers
+nmap <silent> <leader>l :set nonu!<CR>
+"wrap lines
+nmap <silent> <leader>w :set nowrap!<CR>
+"hide hightlight of searches
+nmap <silent> // :nohlsearch<CR>
+
+nmap <silent> gA ggvG$
+
+" Delete a buffer without losing the window
+" https://stackoverflow.com/questions/4465095
+nmap <silent> <C-c> :bp\|bd #<CR>
+
+"Toggle folding
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+
+map <Tab> :bnext<CR>
+map <S-Tab> :bprev<CR>
+
+nmap <C-t> :tabnew<CR>
+
+au BufRead,BufNewFile *.launch set filetype=xml
+au BufRead,BufNewFile *.sdf set filetype=xml
+
+
