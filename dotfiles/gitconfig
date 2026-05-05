@@ -1,0 +1,23 @@
+[user]
+	email = hellston20a@gmail.com
+	name = H S Helson Go
+[color]
+    ui = auto
+[core]
+	editor = nvim
+	excludesFile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+[credential]
+	helper = store
+[branch]
+	autosetuprebase = always
+[include]
+    path = ~/.gitconfig.local
+[log]
+    date = iso
+[pull]
+    rebase = true
+[push]
+    default = simple
+[init]
+    defaultBranch = main

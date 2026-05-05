@@ -1,0 +1,9 @@
+colbuild package="" *cmake_flags:
+    @if [ ! -d "src" ] || [ -f "package.xml" ] || [ -f "CMakeLists.txt" ]; then \
+        echo "Error: colbuild must be run from the workspace root (where 'src' exists, but not 'package.xml')."; \
+        exit 1; \
+    fi
+    colcon build --symlink-install \
+        --event-handlers=console_cohesion+ \
+        {{ if package != "" { "--packages-up-to " + package } else { "" } }} \
+        --cmake-args -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON {{ cmake_flags }}
