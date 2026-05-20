@@ -37,6 +37,7 @@ in {
     zip
     unzip
     rsync
+    dtach
 
     # Build and dev tools: general
     act
@@ -219,6 +220,7 @@ in {
     la = "ls -la";
     l = "ls -CF";
     md = "mkdir -p";
+    da = "dtach -A ~/.dtach/default.sock bash";
     hm = "home-manager";
     hmb = "home-manager build";
     hms = "home-manager switch";
