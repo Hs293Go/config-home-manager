@@ -71,7 +71,6 @@ in {
     direnv
 
     nodejs_22
-    asdf
 
     lazygit
 
@@ -99,7 +98,6 @@ in {
 
       source ${pkgs.fzf}/share/fzf/key-bindings.zsh
       source ${pkgs.fzf}/share/fzf/completion.zsh
-      source "${pkgs.asdf-vm}/share/asdf-vm/asdf.sh"
 
       autoload edit-command-line;
       zle -N edit-command-line
