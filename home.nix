@@ -63,6 +63,7 @@ in
     # Editors
     neovim
     tree-sitter
+    nixfmt
 
     # Shell QOL
     fd
