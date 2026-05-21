@@ -2,19 +2,28 @@
 
 let
   tl-pinned = import (fetchTarball {
-    url =
-      "https://github.com/NixOS/nixpkgs/archive/63dacb46bf939521bdc93981b4cbb7ecb58427a0.tar.gz";
+    url = "https://github.com/NixOS/nixpkgs/archive/63dacb46bf939521bdc93981b4cbb7ecb58427a0.tar.gz";
     sha256 = "1lr1h35prqkd1mkmzriwlpvxcb34kmhc9dnr48gkm8hh089hifmx";
   }) { };
   tl = tl-pinned.texlive;
   tex = tl.combine {
     inherit (tl)
-      scheme-medium latexmk collection-latex collection-latexextra
-      collection-latexrecommended collection-bibtexextra collection-luatex
-      collection-langcjk collection-publishers collection-fontsrecommended
-      collection-fontsextra ut-thesis;
+      scheme-medium
+      latexmk
+      collection-latex
+      collection-latexextra
+      collection-latexrecommended
+      collection-bibtexextra
+      collection-luatex
+      collection-langcjk
+      collection-publishers
+      collection-fontsrecommended
+      collection-fontsextra
+      ut-thesis
+      ;
   };
-in {
+in
+{
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "hs293go";
@@ -56,7 +65,7 @@ in {
     tree-sitter
     nixfmt
 
-    # Shell QOL 
+    # Shell QOL
     fd
     ripgrep
     bat
@@ -150,7 +159,9 @@ in {
 
   };
 
-  programs.fzf = { enable = true; };
+  programs.fzf = {
+    enable = true;
+  };
 
   programs.zoxide = {
     enable = true;
@@ -159,8 +170,7 @@ in {
 
   programs.direnv = {
     enable = true;
-    enableZshIntegration =
-      true; # or enableBashIntegration / enableFishIntegration
+    enableZshIntegration = true; # or enableBashIntegration / enableFishIntegration
     silent = true;
   };
 
