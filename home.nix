@@ -117,20 +117,23 @@ in
         alias ssh='kitty +kitten ssh'
       fi
 
+      # ROS env: setup.zsh sources ros2-argcomplete.zsh (which defines the
+      # generic _python_argcomplete function and compdef's it to ros2) and
+      # later rosidl-argcomplete.zsh (which calls a bare `compinit` and wipes
+      # _comps, losing the ros2 registration). Re-register ros2 -- and reuse
+      # the same generic function for colcon (it dispatches on ''${words[1]}
+      # at runtime, so one function serves both).
+      #
+      # Note: argcomplete's _python-argcomplete "global" completer is not
+      # useful in zsh; see lines 141-146 of that file -- it early-returns
+      # to _default unless $service == -default-, which never happens for a
+      # direct command via _postpatcomps.
       if [ -d /opt/ros ] ; then
         ros_setup_scripts=(/opt/ros/*/setup.zsh)
         if [ "''${#ros_setup_scripts[@]}" -eq 1 ] ; then
           source "''${ros_setup_scripts[@]:0:1}"
-          colcon_argcomplete_script=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
-          if [ -f "''${colcon_argcomplete_script}" ] ; then
-            source "$colcon_argcomplete_script"
-            if command -v register-python-argcomplete3 &> /dev/null; then
-              :
-            elif command -v register-python-argcomplete &> /dev/null; then
-              alias register-python-argcomplete3=register-python-argcomplete
-            fi
-            eval "$(register-python-argcomplete3 ros2)"
-            eval "$(register-python-argcomplete3 colcon)"
+          if typeset -f _python_argcomplete >/dev/null; then
+            compdef _python_argcomplete ros2 colcon
           fi
         fi
       fi
