@@ -368,6 +368,33 @@ in
     dcud = "docker compose up -d";
     dcd = "docker compose down";
     rcp = "rsync -avzhP --exclude=.git --exclude=build";
+    icat = "kitten icat"; # display images inline
+    icc = "kitten icat --clear"; # clear displayed images
+
+    # Clipboard (works over SSH via kitty protocol)
+    clip = "kitten clipboard"; # pipe stdin to clipboard
+    paste = "kitten clipboard --get-clipboard";
+    # Diff (syntax-highlighted, side-by-side)
+    kdiff = "kitten diff";
+    d = "kitten diff";
+
+    # Hints (grab paths/URLs/hashes from screen)
+    hint = "kitten hints";
+
+    # Themes
+    theme = "kitten themes"; # interactive theme picker
+
+    # Unicode / emoji input
+    uni = "kitten unicode_input";
+
+    # Transfer files over the terminal (no SSH config needed)
+    kt = "kitten transfer";
+
+    # Show key/escape codes for debugging
+    keys = "kitten show_key";
+
+    # Notify when a long command finishes (kitty 0.36+)
+    notify = "kitten notify";
   };
 
   # Let Home Manager install and manage itself.
