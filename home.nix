@@ -34,6 +34,7 @@ in {
   home.packages = with pkgs; [
     curl
     git
+    gh
     zip
     unzip
     rsync
@@ -267,6 +268,7 @@ in {
     gcb = "git checkout -b";
     gcf = "git config --list";
     gcfu = "git commit --fixup";
+    Gcl = "gh repo clone";
     gcl = "git clone --recurse-submodules";
     gcn = "git commit --verbose --no-edit";
     gco = "git checkout";
