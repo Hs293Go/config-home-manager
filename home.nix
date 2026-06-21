@@ -398,6 +398,8 @@ in
     gpu = "git push upstream";
     gpv = "git push --verbose";
     gr = "git remote";
+    grgu = "git remote get-url";
+    grsu = "git remote set-url";
     gra = "git remote add";
     grb = "git rebase";
     grba = "git rebase --abort";
