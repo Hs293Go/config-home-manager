@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   tl-pinned = import (fetchTarball {
@@ -122,8 +127,9 @@ in
       # useful in zsh; see lines 141-146 of that file -- it early-returns
       # to _default unless $service == -default-, which never happens for a
       # direct command via _postpatcomps.
-      if (( $+commands[register-python-argcomplete] )); then
-        eval "$(register-python-argcomplete --shell zsh ros2 colcon)"
+      # ros2/colcon completion, cached by home.activation.argcompleteCache.
+      if [[ -r ${config.xdg.cacheHome}/zsh/argcomplete-ros2.zsh ]]; then
+        source ${config.xdg.cacheHome}/zsh/argcomplete-ros2.zsh
       fi
 
     '';
@@ -153,6 +159,20 @@ in
   programs.fzf = {
     enable = true;
   };
+
+  # Cache argcomplete's zsh registration for ros2/colcon at switch time, since
+  # eval-ing it on every shell startup is slow. Uses the system argcomplete, not
+  # nixpkgs', so the script matches the version ros2/colcon import at runtime.
+  home.activation.argcompleteCache = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    argcomplete_cache="${config.xdg.cacheHome}/zsh/argcomplete-ros2.zsh"
+    argcomplete_bin=$(PATH="$PATH:/usr/local/bin:/usr/bin" command -v register-python-argcomplete || true)
+    if [[ -n $argcomplete_bin ]]; then
+      run mkdir -p "$(dirname "$argcomplete_cache")"
+      run sh -c '"$1" --shell zsh ros2 colcon > "$2.tmp" && mv "$2.tmp" "$2"' _ "$argcomplete_bin" "$argcomplete_cache"
+    else
+      run rm -f "$argcomplete_cache"
+    fi
+  '';
 
   programs.zoxide = {
     enable = true;
