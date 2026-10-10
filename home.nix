@@ -92,6 +92,7 @@ in
 
     tex
 
+    sshfs
     minicom
     htop
     nmap
