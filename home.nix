@@ -91,6 +91,8 @@ in
     lazygit
 
     tex
+    typst
+    tinymist
 
     sshfs
     minicom
