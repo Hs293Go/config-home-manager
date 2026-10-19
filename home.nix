@@ -99,6 +99,7 @@ in
     htop
     nmap
     kdePackages.okular
+    pkgs.caligula
   ];
 
   programs.zsh = {
