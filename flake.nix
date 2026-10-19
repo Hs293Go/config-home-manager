@@ -14,11 +14,19 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      # The only per-machine setting: change this line on other machines.
+      username = "hs293go";
     in
     {
-      homeConfigurations.hs293go = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [
+          ./home.nix
+          {
+            home.username = username;
+            home.homeDirectory = "/home/${username}";
+          }
+        ];
       };
 
       formatter.${system} = pkgs.nixfmt;

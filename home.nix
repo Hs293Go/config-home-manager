@@ -29,10 +29,7 @@ let
   };
 in
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "hs293go";
-  home.homeDirectory = "/home/hs293go";
+  # home.username and home.homeDirectory are set per machine in flake.nix.
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
