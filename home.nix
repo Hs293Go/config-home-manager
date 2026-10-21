@@ -425,6 +425,11 @@ in
     notify = "kitten notify";
   };
 
+  # Same setting gnome-tweaks writes for "Swap Esc and Caps Lock".
+  dconf.settings."org/gnome/desktop/input-sources" = {
+    xkb-options = [ "caps:swapescape" ];
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
