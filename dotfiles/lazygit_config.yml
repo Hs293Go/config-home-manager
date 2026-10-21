@@ -1,1 +1,7 @@
 # Lazygit
+git:
+  # Cycle with '|'. See docs/Custom_DiffRenderers.md upstream.
+  diffRenderers:
+    - command: delta --{{colorScheme}} --paging=never
+    - type: rawGit # git's default diff
+      name: default
