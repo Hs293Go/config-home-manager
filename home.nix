@@ -62,6 +62,22 @@ in
 
     # Build and dev tools: python
     pipx
+    uv
+    ruff
+    ty
+    pyright
+    black
+    devpi-client
+
+    # Build and dev tools: C++ (formerly pipx)
+    cmake-format
+    cpplint
+
+    # Linters, formatters, pre-commit
+    prek
+    yamllint
+    yamlfmt
+    yq # kislyuk's jq wrapper, not yq-go
 
     # Editors
     neovim
