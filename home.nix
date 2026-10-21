@@ -97,6 +97,8 @@ in
     nmap
     kdePackages.okular
     pkgs.caligula
+
+    awscli2
   ];
 
   programs.zsh = {
