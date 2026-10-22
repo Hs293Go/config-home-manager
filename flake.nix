@@ -14,20 +14,27 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      # The only per-machine setting: change this line on other machines.
-      username = "hs293go";
+      # One entry per machine; `home-manager switch` picks the one matching
+      # $USER, so no machine needs a local edit.
+      usernames = [
+        "hs293go" # Z690
+        "hei-shing-helson-go" # Dell Pro Max 16 Plus
+      ];
+      mkHome =
+        username:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./home.nix
+            {
+              home.username = username;
+              home.homeDirectory = "/home/${username}";
+            }
+          ];
+        };
     in
     {
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./home.nix
-          {
-            home.username = username;
-            home.homeDirectory = "/home/${username}";
-          }
-        ];
-      };
+      homeConfigurations = nixpkgs.lib.genAttrs usernames mkHome;
 
       formatter.${system} = pkgs.nixfmt;
     };
