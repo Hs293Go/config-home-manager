@@ -44,12 +44,16 @@ in
   # environment.
   home.packages = with pkgs; [
     curl
+    wget
     git
     gh
     zip
     unzip
+    unar # also handles .rar without unfree unrar
     rsync
+    tree
     dtach
+    tmux
 
     # Build and dev tools: general
     act
@@ -59,6 +63,7 @@ in
     clang-tools
     gdb
     ccache
+    cmake-format
 
     # Build and dev tools: python
     pipx
@@ -69,16 +74,17 @@ in
     black
     devpi-client
 
-    # Build and dev tools: C++ (formerly pipx)
-    cmake-format
-    cpplint
-
     # Linters, formatters, pre-commit
     prek
     yamllint
     yamlfmt
-    yq # kislyuk's jq wrapper, not yq-go
     shfmt
+    shellcheck
+
+    # Structured data
+    jq
+    yq # kislyuk's jq wrapper, not yq-go
+    xmlstarlet
 
     # Editors
     neovim
@@ -110,10 +116,24 @@ in
     typst
     tinymist
 
-    sshfs
+    # Docs and media
+    pandoc
+    doxygen
+    imagemagick
+    mediainfo
+    img2pdf
+
+    # Embedded. dfu-util relies on the apt udev rules for non-root access.
+    dfu-util
+    ubootTools
+    patchelf
     minicom
+
+    sshfs
     htop
     nmap
+    socat
+    traceroute # mtr stays on apt: it needs cap_net_raw
     kdePackages.okular
     pkgs.caligula
 
