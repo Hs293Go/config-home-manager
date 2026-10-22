@@ -91,6 +91,24 @@ in
     tree-sitter
     nixfmt
 
+    # Neovim LSPs, formatters and linters. nvim's own installer is only the
+    # fallback for hosts without home-manager (Jetson, Termux).
+    lua-language-server
+    stylua
+    vscode-langservers-extracted
+    yaml-language-server
+    bash-language-server
+    typescript-language-server
+    cmake-language-server
+    texlab
+    taplo
+    markdownlint-cli
+    prettier
+    prettierd
+    pgformatter
+    typstyle
+    hadolint
+
     # Shell QOL
     fd
     ripgrep
