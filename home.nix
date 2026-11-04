@@ -54,6 +54,7 @@ in
     tree
     dtach
     tmux
+    fastfetch
 
     # Build and dev tools: general
     act
@@ -178,10 +179,6 @@ in
       autoload edit-command-line;
       zle -N edit-command-line
       bindkey -M vicmd vv edit-command-line
-
-      if [ $TERM = "xterm-kitty" ] ; then
-        alias ssh='kitty +kitten ssh'
-      fi
 
       # Note: argcomplete's _python-argcomplete "global" completer is not
       # useful in zsh; see lines 141-146 of that file -- it early-returns
@@ -459,6 +456,8 @@ in
     # Diff (syntax-highlighted, side-by-side)
     kdiff = "kitten diff";
     d = "kitten diff";
+
+    s = "kitten ssh";
 
     # Hints (grab paths/URLs/hashes from screen)
     hint = "kitten hints";
