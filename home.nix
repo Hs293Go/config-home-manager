@@ -357,6 +357,8 @@ in
     gcb = "git checkout -b";
     gcf = "git config --list";
     gcfu = "git commit --fixup";
+    Gas = "gh auth status";
+    Gasw = "gh auth switch";
     Gcl = "gh repo clone";
     gcl = "git clone --recurse-submodules";
     gcn = "git commit --verbose --no-edit";
