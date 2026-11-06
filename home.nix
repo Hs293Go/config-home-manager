@@ -89,7 +89,6 @@ in
     xmlstarlet
 
     # Editors
-    neovim
     tree-sitter
     nixfmt
 
@@ -159,6 +158,57 @@ in
 
     awscli2
   ];
+
+  # Plugins with native build steps come from nixpkgs. The config stays in the
+  # ~/.config/nvim repo; sideloadInitLua keeps home-manager from writing init.lua.
+  # lua/config/pack.lua skips the plugins named in vim.g.nix_plugins.
+  programs.neovim = {
+    enable = true;
+    sideloadInitLua = true;
+    withPython3 = false;
+    withRuby = false;
+    plugins = with pkgs.vimPlugins; [
+      markdown-preview-nvim
+      # Keep in step with `ensure_installed` in lua/plugins/ts.lua.
+      (nvim-treesitter.withPlugins (
+        p: with p; [
+          c
+          cpp
+          cuda
+          rust
+          python
+          lua
+          vim
+          vimdoc
+          bash
+          nix
+          make
+          cmake
+          dockerfile
+          latex
+          markdown
+          markdown_inline
+          toml
+          xml
+          json
+          yaml
+          gitignore
+          diff
+          query
+          regex
+        ]
+      ))
+      nvim-treesitter-textobjects
+      nvim-treesitter-context
+      blink-cmp
+      blink-compat
+      luasnip
+    ];
+    initLua = ''
+      vim.g.nix_plugins = { "markdown-preview.nvim", "nvim-treesitter", "nvim-treesitter-textobjects",
+        "nvim-treesitter-context", "blink.cmp", "blink.compat", "LuaSnip" }
+    '';
+  };
 
   programs.zsh = {
     enable = true;
