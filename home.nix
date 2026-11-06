@@ -321,6 +321,8 @@ in
       ./dotfiles/ipython/profile_default/ipython_config.py;
     ".config/lazygit/config.yml".source = ./dotfiles/lazygit_config.yml;
     ".config/just/justfile".source = ./dotfiles/justfile;
+    ".config/distrobox/ros-humble.ini".source = ./dotfiles/distrobox/ros-humble.ini;
+    ".config/distrobox/ros-humble-setup.sh".source = ./dotfiles/distrobox/ros-humble-setup.sh;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
