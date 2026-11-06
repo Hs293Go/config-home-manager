@@ -55,6 +55,7 @@ in
     dtach
     tmux
     fastfetch
+    trash-cli
 
     # Build and dev tools: general
     act
