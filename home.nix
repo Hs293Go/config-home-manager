@@ -282,6 +282,32 @@ in
     fi
   '';
 
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    settings = {
+      "*" = { };
+      # Desktop, reached over ZeroTier network ebe7fbd445bb524b.
+      "Z690" = {
+        HostName = "172.25.98.189";
+        Port = 1115;
+        User = "hs293go";
+      };
+      "nix" = {
+        HostName = "172.25.157.5";
+        User = "hs293go";
+      };
+      "tux" = {
+        HostName = "172.25.140.156";
+        User = "hs293go";
+      };
+      "work" = {
+        HostName = "172.25.5.70";
+        User = "hei-shing-helson-go";
+      };
+    };
+  };
+
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
